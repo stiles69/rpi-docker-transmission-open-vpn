@@ -21,8 +21,8 @@ RUN apt-get update \
     && curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-armhf-v0.6.0.tar.gz \
      | tar -C /usr/local/bin -xzv \
     && groupmod -g 1000 users \
-    && useradd -u 911 -U -d /config -s /bin/false brettsalemink \
-    && usermod -G users brettsalemink
+    && useradd -u 911 -U -d /config -s /bin/false abc \
+    && usermod -G users abc
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
@@ -44,13 +44,13 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_BIND_ADDRESS_IPV6=:: \
     TRANSMISSION_BLOCKLIST_ENABLED=false \
     TRANSMISSION_BLOCKLIST_URL=http://www.example.com/blocklist \
-    TRANSMISSION_CACHE_SIZE_MB=4 \
+    TRANSMISSION_CACHE_SIZE_MB=16 \
     TRANSMISSION_DHT_ENABLED=false \
     TRANSMISSION_DOWNLOAD_DIR=/data/ \
     TRANSMISSION_DOWNLOAD_LIMIT=2000 \
     TRANSMISSION_DOWNLOAD_LIMIT_ENABLED=true \
     TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=true \
-    TRANSMISSION_DOWNLOAD_QUEUE_SIZE=2 \
+    TRANSMISSION_DOWNLOAD_QUEUE_SIZE=4 \
     TRANSMISSION_ENCRYPTION=1 \
     TRANSMISSION_IDLE_SEEDING_LIMIT=30 \
     TRANSMISSION_IDLE_SEEDING_LIMIT_ENABLED=false \
@@ -90,7 +90,7 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_RPC_WHITELIST_ENABLED=false \
     TRANSMISSION_SCRAPE_PAUSED_TORRENTS_ENABLED=true \
     TRANSMISSION_SCRIPT_TORRENT_DONE_ENABLED=true \
-    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=/opt/tinyproxy/transmission-extract.sh \
+    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=/data/transmission-extract.sh \
     TRANSMISSION_SEED_QUEUE_ENABLED=false \
     TRANSMISSION_SEED_QUEUE_SIZE=10 \
     TRANSMISSION_SPEED_LIMIT_DOWN=2000 \

@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: stiles/rpi-transmission-openvpn
+    image: stiles/rpi-docker-transmission-open-vpn
     cap_add:
       - NET_ADMIN
     devices:
@@ -22,7 +22,7 @@ services:
       - /torrents/:/data
     environment:
       - OPENVPN_PROVIDER=PIA
-      - OPENVPN_CONFIG=US\ Chicago
+      - OPENVPN_CONFIG=CA\ Toronto
       - OPENVPN_USERNAME=p2685989
       - OPENVPN_PASSWORD=Samsung#2013    
       - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
@@ -31,7 +31,7 @@ services:
     build:
       context: ./proxy
       dockerfile: Dockerfile.armhf
-    image: stiles/rpi-transmission-openvpn-proxy
+    image: stiles/rpi-docker-transmission-openvpn-proxy
     links:
       - transmission
     ports:
