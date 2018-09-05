@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  transmission:
+    build:
+      context: .
+      dockerfile: Dockerfile.armhf
+    image: haugene/rpi-transmission-openvpn
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - '/dev/net/tun'
+    restart: always
+    ports:
+      - '9091:9091'
+      - '8888:8888'
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /torrents/:/data
+    environment:
+      - OPENVPN_PROVIDER=PIA
+      - OPENVPN_CONFIG="CA Toronto"
+      - OPENVPN_USERNAME="p2685989"
+      - OPENVPN_PASSWORD="Samsung#2013"    
+      - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
+      - LOCAL_NETWORK=10.0.0.1/24
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile.armhf
+    image: haugene/rpi-transmission-openvpn-proxy
+    links:
+      - transmission
+    ports:
+      - '8080:8080'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
+  rss:
+    build:
+      context: ./plugins/rss
+      dockerfile: Dockerfile.armhf
+    image: haugene/rpi-transmission-plugin-rss
+    links:
+      - transmission
+    environment:
+      - RSS_URL=http://.../xxxxx.rss
