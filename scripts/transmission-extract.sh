@@ -22,20 +22,32 @@
 #----------------------------
 
 #---------- GLOBAL VARIABLES ---------
-
+	DIR1="/torrents"
+	DIR2="/data"
 #-------------------------------------
 function Main ()
 {
-	echo 'transmission-extract.sh started' > Transmission-Extract-Log.txt
-	wait
-	find . -name '*.rar' -execdir unrar e -o- {} \; 
-	find . -name '*.mp4' -exec mv -t completed {} +
-	find . -name '*.mkv' -exec mv -t completed {} +
-	find . -name '*.avi' -exec mv -t completed {} +
-	find . -name '*.mpg' -exec mv -t completed {} +
-	find . -name '*.wmv' -exec mv -t completed {} +
-	find . -name '*.mpeg' -exec mv -t completed {} +
-	find . -name '*.flv' -exec mv -t completed {} +
+#	echo 'transmission-extract.sh started' > $HOME/Transmission-Extract-Log.txt
+	find /data -name '*.rar' -execdir unrar e -o- {} \; 
+	find /torrents -name '*.rar' -execdir unrar e -o- {} \;
+	find /torrents -name '*.mp4' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.mkv' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.avi' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.mpg' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.wmv' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.mpeg' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.flv' -exec mv -t $DIR1/completed {} +
+	find /torrents -name '*.flac' -exec mv -t $DIR1/completed {} +
+
+	#===Docker Dir ====
+	find /torrents -name '*.mp4' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.mkv' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.avi' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.mpg' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.wmv' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.mpeg' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.flv' -exec mv -t $DIR2/completed {} +
+	find /torrents -name '*.flac' -exec mv -t $DIR2/completed {} +
 }	# end Main
 
 Main
