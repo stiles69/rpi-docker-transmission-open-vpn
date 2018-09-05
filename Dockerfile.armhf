@@ -21,8 +21,8 @@ RUN apt-get update \
     && curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-armhf-v0.6.0.tar.gz \
      | tar -C /usr/local/bin -xzv \
     && groupmod -g 1000 users \
-    && useradd -u 911 -U -d /config -s /bin/false abc \
-    && usermod -G users abc
+    && useradd -u 911 -U -d /config -s /bin/false brettsalemink \
+    && usermod -G users brettsalemink
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
