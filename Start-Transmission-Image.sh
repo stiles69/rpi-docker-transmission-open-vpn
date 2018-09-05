@@ -24,16 +24,21 @@ set -o nounset                              # Treat unset variables as an error
 #---------- GLOBAL VARIABLES ---------
 
 #-------------------------------------
+StartProxy ()
+{
+	docker run -d stiles/rpi-docker-transmission-openvpn-proxy
+}	# end
+
+StartTransmission()
+{
+	
+	docker run --cap-add=NET_ADMIN --device=/dev/net/tun -d -v /torrents/:/data -v /etc/localtime:/etc/localtime:ro --env-file $HOME/DockerEnv -p 9091:9091 stiles/rpi-docker-transmission-open-vpn 
+}	# end
+
 function Main ()
 {
-	docker run -d stiles/rpi-transmission-openvpn-proxy
-	wait
-	docker run --cap-add=NET_ADMIN --device=/dev/net/tun -d \ 
-	-v /torrents/:/data \ 
-	-v /etc/localtime:/etc/localtime:ro \ 
-	--env-file $HOME/DockerEnv \ 
-	-p 9091:9091 \ 
-	stiles/rpi-docker-transmission-openvpn 
+	StartTransmission
+	StartProxy
 }	# end Main
 
 Main
