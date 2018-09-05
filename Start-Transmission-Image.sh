@@ -26,12 +26,14 @@ set -o nounset                              # Treat unset variables as an error
 #-------------------------------------
 function Main ()
 {
+	docker run -d stiles/rpi-transmission-openvpn-proxy
+	wait
 	docker run --cap-add=NET_ADMIN --device=/dev/net/tun -d \ 
-	-v /your/storage/path/:/data \ 
-	-v /etc/localtime:/etc/localtime:ro \ 
-	--env-file /your/docker/env/file \ 
-	-p 9091:9091 \ 
-	haugene/transmission-openvpn 
+	-v /ytorrents/:/data \ 
+	 - /etc/localtime:/etc/localtime:ro \ 
+	---env-file $HOME/DockerEnv \ 
+	 -p 9091:9091 \ 
+	stiles/rpi-docker-transmission-openvpn 
 }	# end Main
 
 Main
