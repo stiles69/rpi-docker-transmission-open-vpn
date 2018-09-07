@@ -26,7 +26,8 @@
 	DIR2="/data"
 	LOGDIR=$HOME/Transmission-Extract-Logs
 	LOGFILE=Log.txt
-	DIRCOMPLETED="$DIR1/completed"
+	DIRCOMPLETEDTORRENTS="$DIR1/completed"
+	DIRCOMPLETEDDATA="$DIR2/completed"
 #-------------------------------------
 UnRarDataDir()
 {
@@ -52,28 +53,28 @@ UnRarTorrentsDir()
 MoveTorrentsDir()
 {
 	echo "Starting move on $DIR1"
-	find $DIR1 -name '*.mp4' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.mkv' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.avi' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.mpg' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.wmv' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.mpeg' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.flv' -exec mv -t $DIR1/completed {} +
-	find $DIR1 -name '*.flac' -exec mv -t $DIR1/completed {} +
+	find $DIR1 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.avi' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.flv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR1 -name '*.flac' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
 	echo "Finished move on $DIR"
 }	# end
 
 MoveDataDir()
 {
 	echo "Starting move on $DIR2"	
-	find $DIR2 -name '*.mp4' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.mkv' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.avi' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.mpg' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.wmv' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.mpeg' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.flv' -exec mv -t $DIR2/completed {} +
-	find $DIR2 -name '*.flac' -exec mv -t $DIR2/completed {} +
+	find $DIR2 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.avi' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.flv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR2 -name '*.flac' -exec mv -t "$DIRCOMPLETEDDATA" {} +
 	echo "Finished move on $DIR2"
 }	# end
 
