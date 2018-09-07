@@ -26,6 +26,7 @@
 	DIR2="/data"
 	LOGDIR=$HOME/Transmission-Extract-Logs
 	LOGFILE=Log.txt
+	DIRCOMPLETED="$DIR1/completed"
 #-------------------------------------
 UnRarDataDir()
 {
@@ -78,8 +79,8 @@ MoveDataDir()
 
 function Main ()
 {
-	UnRarDataDir
-	MoveDataDir
+	UnRarTorrentsDir
+	MoveTorrentsDir
 }	# end Main
 
 Main
