@@ -80,10 +80,10 @@ MoveDataDir()
 
 function Main ()
 {
+	UnRarTorrentsDir
 	UnRarDataDir
-	UnTorrentsDir
-	MoveDataDir
 	MoveTorrentsDir
+	MoveDataDir
 }	# end Main
 
 Main
