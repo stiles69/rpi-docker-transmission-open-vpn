@@ -1,0 +1,58 @@
+# /etc/zsh/zlogout: system-wide .zlogout file for zsh(1).
+#=========EDITED BY STILES========
+function Commands ()
+{
+	echo "Synronizing repos please be patient, shutting down quickly."	
+	# Pull Bin local
+	Pull "$HOME/bin"
+	wait
+
+	# Push Bin local
+	Push "$HOME/bin"
+	wait
+
+	# Pull Sh local
+	Pull "$HOME/lib/sh"
+	wait
+
+	# Push Sh local
+	Push "$HOME/lib/sh"
+	wait
+}	# end Commands
+
+function Push ()
+{
+	local GITDIR=$1
+	COMMITMESSAGE="$HOSTNAME Bash"
+	cd "$GITDIR"
+	git add .
+	git commit -m "$COMMITMESSAGE"
+	git push
+	SetPermissions "$GITDIR"
+}	# end function
+
+function Pull ()
+{
+	local GITDIR=$1
+	cd "$GITDIR"
+	git pull
+	SetPermissions "$GITDIR"
+}	# end function
+
+function SetPermissions ()
+{
+	local GITDIR=$1
+	sudo chown -R brettsalemink:users $GITDIR
+	sudo chmod -R 774 $GITDIR
+	wait
+}	# end function
+
+function Main ()
+{
+	Commands
+}	# end function Main
+Main
+
+#== EXIT ==
+exit 0
+

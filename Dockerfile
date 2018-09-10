@@ -3,7 +3,7 @@ MAINTAINER Kristian Haugene
 
 VOLUME /data
 VOLUME /config
-VOLUME /scripts
+#VOLUME /scripts
 
 # Update packages and install software
 RUN apt-get update \
@@ -25,11 +25,17 @@ RUN apt-get update \
     && useradd -u 911 -U -d /config -s /bin/false abc \
     && usermod -G users abc
 
+# Make bin dir
+RUN mkdir $HOME/bin
+RUN mkdir -p $HOME/lib/sh
+
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
 ADD transmission/ /etc/transmission/
 ADD tinyproxy /opt/tinyproxy/
-ADD scripts/ /scripts/
+#ADD scripts/ /scripts/
+ADD bin/ $HOME/bin/
+ADD lib/sh/ $HOME/lib/sh/
 
 ENV OPENVPN_USERNAME=**None** \
     OPENVPN_PASSWORD=**None** \
@@ -92,7 +98,7 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_RPC_WHITELIST_ENABLED=false \
     TRANSMISSION_SCRAPE_PAUSED_TORRENTS_ENABLED=true \
     TRANSMISSION_SCRIPT_TORRENT_DONE_ENABLED=true \
-    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=/scripts/transmission-extract.sh \
+    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=$HOME/bin/transmission-extract.sh \
     TRANSMISSION_SEED_QUEUE_ENABLED=false \
     TRANSMISSION_SEED_QUEUE_SIZE=10 \
     TRANSMISSION_SPEED_LIMIT_DOWN=2000 \

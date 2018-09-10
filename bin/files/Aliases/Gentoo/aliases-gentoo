@@ -1,0 +1,5 @@
+# ====== Added by Brett Salemink for Gentoo =====
+# For unmasking emerge
+alias a='--autoumask-write'
+alias nfs-start="sudo /etc/init.d/nfs start"
+alias nfs-stop="sudo rc-service rpcbind stop"

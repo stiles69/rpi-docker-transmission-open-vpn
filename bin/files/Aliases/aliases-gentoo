@@ -1,0 +1,2 @@
+alias nfs-start="sudo /etc/init.d/nfs start"
+alias nfs-stop='sudo rc-service rpcbind stop"

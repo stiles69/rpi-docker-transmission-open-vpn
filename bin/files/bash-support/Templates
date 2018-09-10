@@ -1,0 +1,41 @@
+§ =============================================================
+§  User Macros
+§ =============================================================
+
+SetMacro( 'AUTHOR',      'Brett Salemink' )
+SetMacro( 'AUTHORREF',   'BS' )
+SetMacro( 'COMPANY',     'Rogue Designs' )
+SetMacro( 'COPYRIGHT',   '2018' )
+SetMacro( 'EMAIL',       'admin@roguedesigns.us' )
+SetMacro( 'LICENSE',     'MIT' )
+SetMacro( 'ORGANIZATION','Rogue Designs' )
+
+SetFormat( 'DATE', '%x' )
+SetFormat( 'TIME', '%H:%M' )
+SetFormat( 'YEAR', '%Y' )
+
+SetStyle( 'default' )
+
+§ =============================================================
+§  File Includes and Shortcuts
+§ =============================================================
+
+MenuShortcut( 'Comments',        'c' )
+MenuShortcut( 'Statements',      's' )
+MenuShortcut( 'Tests',           't' )
+MenuShortcut( 'ParamSub',        'p' )
+MenuShortcut( 'PatternMatching', 'p' )
+MenuShortcut( 'IO-Redir',        'i' )
+
+IncludeFile( 'comments.templates'        )
+IncludeFile( 'statements.templates'      )
+IncludeFile( 'tests.templates'           )
+IncludeFile( 'paramsub.templates'        )
+IncludeFile( 'specialparams.templates'   )
+IncludeFile( 'environment.templates'     )
+IncludeFile( 'builtins.templates'        )
+IncludeFile( 'set.templates'             )
+IncludeFile( 'shelloptions.templates'    )
+IncludeFile( 'io-redirection.templates'  )
+IncludeFile( 'patternmatching.templates' )
+

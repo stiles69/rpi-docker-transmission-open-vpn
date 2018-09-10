@@ -1,0 +1,45 @@
+# ============= SYSTEMCTL ALIASES ===============
+alias vpn-stop="sudo systemctl stop openvpn@pia-midwest.service"
+alias vpn-start="sudo systemctl start openvpn@pia-midwest.service"
+alias vpn-status="sudo systemctl status openvpn@pia-midwest.service"
+alias vpn-restart="sudo systemctl restart openvpn@pia-midwest.service"
+
+alias caddy-stop="sudo systemctl stop caddy"
+alias caddy-start="sudo systemctl start caddy"
+alias caddy-status="sudo systemctl status caddy"
+alias caddy-restart="sudo systemctl restart caddy"
+
+alias t-stop="sudo systemctl stop transmission-daemon"
+alias t-start="sudo systemctl start transmission-daemon"
+alias t-status="sudo systemctl status transmission-daemon"
+alias t-restart="sudo systemctl restart transmission-daemon"
+
+alias hotspot-stop="sudo systemctl stop hostapd.service"
+alias hotspot-start="sudo systemctl start hostapd.service"
+alias hotspot-status="sudo systemctl status hostapd.service"
+alias hotspot-restart="sudo systemctl restart hostapd.service"
+
+alias docker-stop="sudo systemctl stop docker.service"
+alias docker-start="sudo systemctl start docker.service"
+alias docker-status="sudo systemctl status docker.service"
+alias docker-restart="sudo systemctl restart docker.service"
+	
+alias plex-stop="sudo systemctl stop plexmediaserver.service"
+alias plex-start="sudo systemctl start plexmediaserver.service"
+alias plex-status="sudo systemctl status plexmediaserver.service"
+alias plex-restart="sudo systemctl restart plexmediaserver.service"
+
+alias emby-stop="sudo systemctl stop emby-server.service"
+alias emby-start="sudo systemctl start emby-server.service"
+alias emby-status="sudo systemctl status emby-server.service"
+alias emby-restart="sudo systemctl restart emby-server.service"
+
+alias ftp-stop="sudo systemctl stop pure-ftpd.service"
+alias ftp-start="sudo systemctl start pure-ftpd.service"
+alias ftp-status="sudo systemctl status pure-ftpd.service"
+alias ftp-restart="sudo systemctl restart pure-ftpd.service"
+
+alias uftp-stop="sudo systemctl stop uftp.service"
+alias uftp-start="sudo systemctl start uftp.service"
+alias uftp-status="sudo systemctl status uftp.service"
+alias uftp-restart="sudo systemctl restart uftp.service"

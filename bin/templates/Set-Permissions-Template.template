@@ -1,0 +1,20 @@
+SETPERMISSIONSDIR=
+
+function SetPermissions ()
+{
+	SETPERMISSIONSDIR=$1
+	sudo chown -R brettsalemink:users $SETPERMISSIONSDIR
+	sudo chmod -R 774 $SETPERMISSIONSDIR
+	wait
+	echo "Done setting permissions on $SETPERMISSIONSDIR"
+}	# end function
+
+function Main ()
+{
+	SetPermissions "$SETPERMISSIONSDIR"
+}	# end Main
+
+Main
+
+#===EXIT===
+exit 0
