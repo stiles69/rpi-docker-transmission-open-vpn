@@ -25,7 +25,7 @@ RUN apt-get update \
     && usermod -G users abc
 
 # Make bin dir
-RUN mkdir /config/bin
+#RUN mkdir /config/bin
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
@@ -54,7 +54,7 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_DOWNLOAD_LIMIT=2000 \
     TRANSMISSION_DOWNLOAD_LIMIT_ENABLED=true \
     TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=true \
-    TRANSMISSION_DOWNLOAD_QUEUE_SIZE=4 \
+    TRANSMISSION_DOWNLOAD_QUEUE_SIZE=5 \
     TRANSMISSION_ENCRYPTION=1 \
     TRANSMISSION_IDLE_SEEDING_LIMIT=30 \
     TRANSMISSION_IDLE_SEEDING_LIMIT_ENABLED=false \
