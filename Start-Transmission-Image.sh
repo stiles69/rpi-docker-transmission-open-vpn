@@ -32,13 +32,13 @@ StartProxy ()
 StartTransmission()
 {
 	
-	docker run --cap-add=NET_ADMIN --device=/dev/net/tun -d -v /torrents/:/data -v /etc/localtime:/etc/localtime:ro --env-file $HOME/DockerEnv -p 9091:9091 stiles/rpi-docker-transmission-open-vpn 
+	docker run -it --cap-add=NET_ADMIN --device=/dev/net/tun -d -v /torrents/:/data -v /etc/localtime:/etc/localtime:ro --env-file $HOME/DockerEnv -p 9091:9091 stiles/rpi-docker-transmission-openvpn:latest /bin/bash 
 }	# end
 
 function Main ()
 {
 	StartTransmission
-	StartProxy
+	#StartProxy
 }	# end Main
 
 Main
