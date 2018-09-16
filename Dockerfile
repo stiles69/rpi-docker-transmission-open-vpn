@@ -4,10 +4,14 @@ MAINTAINER Kristian Haugene
 VOLUME /data
 VOLUME /config
 
+# Need this for install of unrar
+ADD bin/ /config/bin/
+
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install transmission-cli transmission-common transmission-daemon \
     && apt-get install -y dumb-init unzip openvpn curl ufw git tinyproxy jq \
+    && dpkg -i /config/unrar_5.3.2-1+deb9u1_armhf.deb \
     && curl -L -o /tmp/release.zip https://github.com/Secretmapper/combustion/archive/release.zip \
     && unzip /tmp/release.zip -d /opt/transmission-ui/ \
     && rm /tmp/release.zip \
@@ -24,14 +28,10 @@ RUN apt-get update \
     && useradd -u 911 -U -d /config -s /bin/sh abc \
     && usermod -G users abc
 
-# Make bin dir
-#RUN mkdir /config/bin
-
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
 ADD transmission/ /etc/transmission/
 ADD tinyproxy /opt/tinyproxy/
-ADD bin/ /config/bin/
 
 ENV OPENVPN_USERNAME=**None** \
     OPENVPN_PASSWORD=**None** \
