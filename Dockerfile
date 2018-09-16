@@ -3,7 +3,6 @@ MAINTAINER Kristian Haugene
 
 VOLUME /data
 VOLUME /config
-#VOLUME /scripts
 
 # Update packages and install software
 RUN apt-get update \
@@ -22,20 +21,17 @@ RUN apt-get update \
     && curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-armhf-v0.6.0.tar.gz \
      | tar -C /usr/local/bin -xzv \
     && groupmod -g 1000 users \
-    && useradd -u 911 -U -d /config -s /bin/false abc \
+    && useradd -u 911 -U -d /config -s /bin/sh abc \
     && usermod -G users abc
 
 # Make bin dir
-RUN mkdir $HOME/bin
-RUN mkdir -p $HOME/lib/sh
+RUN mkdir /config/bin
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
 ADD transmission/ /etc/transmission/
 ADD tinyproxy /opt/tinyproxy/
-#ADD scripts/ /scripts/
-ADD bin/ $HOME/bin/
-ADD lib/sh/ $HOME/lib/sh/
+ADD bin/ /config/bin/
 
 ENV OPENVPN_USERNAME=**None** \
     OPENVPN_PASSWORD=**None** \
@@ -98,7 +94,7 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_RPC_WHITELIST_ENABLED=false \
     TRANSMISSION_SCRAPE_PAUSED_TORRENTS_ENABLED=true \
     TRANSMISSION_SCRIPT_TORRENT_DONE_ENABLED=true \
-    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=$HOME/bin/transmission-extract.sh \
+    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=/config/bin/transmission-extract \
     TRANSMISSION_SEED_QUEUE_ENABLED=false \
     TRANSMISSION_SEED_QUEUE_SIZE=10 \
     TRANSMISSION_SPEED_LIMIT_DOWN=2000 \

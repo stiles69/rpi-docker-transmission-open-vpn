@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: stiles/rpi-docker-transmission-open-vpn
+    image: stiles/rpi-docker-transmission-openvpn
     cap_add:
       - NET_ADMIN
     devices:
@@ -30,7 +30,7 @@ services:
   proxy:
     build:
       context: ./proxy
-      dockerfile: Dockerfile.armhf
+      dockerfile: Dockerfile
     image: stiles/rpi-docker-transmission-openvpn-proxy
     links:
       - transmission

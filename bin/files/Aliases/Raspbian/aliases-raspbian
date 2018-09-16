@@ -1,2 +1,0 @@
-# == Raspbian ==
-alias pia-start=sudo openvpn --config /etc/openvpn/USChicago.ovpn --daemon --auth-user-pass /etc/openvpn/login.txt
