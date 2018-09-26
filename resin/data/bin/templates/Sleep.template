@@ -1,8 +1,0 @@
-
-TIMEOUT=1m
-COMMAND=echo "COMMAND excuted."
-
-function Sleeper ()
-{
-	( ( sleep $TIMEOUT ; echo "Timeout is complete.") & $COMMAND )
-}	# end function

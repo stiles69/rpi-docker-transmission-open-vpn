@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:stretch
+FROM stiles/rpi-raspbian:stretch
 MAINTAINER Kristian Haugene
 
 VOLUME /data
