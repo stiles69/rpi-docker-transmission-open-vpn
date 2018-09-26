@@ -1,4 +1,4 @@
-FROM stiles/rpi-raspbian:stretch
+FROM stiles/armv7hf-ubuntu:latest
 MAINTAINER Kristian Haugene
 
 VOLUME /data
@@ -8,8 +8,6 @@ VOLUME /config
 RUN apt-get update \
     && apt-get -y install transmission-cli transmission-common transmission-daemon \
     && apt-get install -y dumb-init unzip openvpn curl ufw git tinyproxy jq \
-    && curl -L -o /tmp/unrar_5.3.2-1+deb9u1_armhf.deb https://storage.googleapis.com/stiles-images/unrar_5.3.2-1%2Bdeb9u1_armhf.deb \ 
-    && dpkg -i /tmp/unrar_5.3.2-1+deb9u1_armhf.deb \
     && curl -L -o /tmp/release.zip https://github.com/Secretmapper/combustion/archive/release.zip \
     && unzip /tmp/release.zip -d /opt/transmission-ui/ \
     && rm /tmp/release.zip \

@@ -84,7 +84,6 @@ function Main ()
 	UnRarDataDir
 	MoveTorrentsDir
 	MoveDataDir
-	cd /torrents/completed
 }	# end Main
 
 Main

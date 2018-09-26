@@ -1,6 +1,0 @@
-#!/bin/sh
-
-if [ "$(wget -q -O - ipecho.net/plain)" = "173.29.176.159%" ]
-then
-	printf "THE VPN IS NOT ON!"
-

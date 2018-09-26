@@ -1,9 +1,9 @@
 #!/bin/bash - 
 #===============================================================================
 #
-#          FILE: Install-SSH-Keys.sh
+#          FILE: Make-Image.sh
 # 
-#         USAGE: ./Install-SSH-Keys.sh 
+#         USAGE: ./Make-Image.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -11,16 +11,27 @@
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: Brett Salemink (), brett.salemink@gmail.com
+#        AUTHOR: Brett Salemink (BS), admin@roguedesigns.us
 #  ORGANIZATION: Rogue Designs
-#       CREATED: 06/24/2018 08:25
+#       CREATED: 09/25/2018 23:44
 #      REVISION:  ---
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
 
-mkdir ~/.ssh
+#------------ SOURCED ----------------
 
-ssh-keygen -t rsa -b 2048 -C $(hostname)
+#-------------------------------------
+#---------- GLOBAL VARIABLES ---------
 
+#-------------------------------------
+function Main ()
+{
+	docker build -t stiles/armv7hf-ubuntuubuntu:bionic .
+}	# end Main
+
+Main
+
+#===EXIT===
 exit 0
+

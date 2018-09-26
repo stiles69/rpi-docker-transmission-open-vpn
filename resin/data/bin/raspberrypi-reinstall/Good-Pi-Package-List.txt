@@ -1,4 +1,0 @@
-rsync
-bleachbit
-mosh
-

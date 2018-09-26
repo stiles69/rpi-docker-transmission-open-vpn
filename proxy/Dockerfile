@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:stretch
+FROM stiles/armv7hf-ubuntu:latest
 
 RUN apt-get update \
       && apt-get install -y \
