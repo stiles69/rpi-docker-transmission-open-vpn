@@ -5,7 +5,7 @@ MAINTAINER admin@roguedesigns.us
 ENV INITSYSTEM on
 # Your code goes here
 # Update packages and install software
-RUN apt-get update && apt-get -y upgrade && apt-get -y install unrar
+RUN apt-get update && apt-get -y install unrar
 
 # Add configuration and scripts
 #ADD data/ /data/

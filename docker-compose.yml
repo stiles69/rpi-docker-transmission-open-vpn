@@ -1,8 +1,7 @@
 version: '2'
 
 services:
-        raspbian:
-   transmission:
+  transmission:
     build:
       context: .
       dockerfile: Dockerfile

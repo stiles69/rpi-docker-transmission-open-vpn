@@ -1,4 +1,4 @@
-FROM stiles/armv7hf-ubuntu:latest
+FROM stiles/rpi-raspbian:stretch
 MAINTAINER Kristian Haugene
 
 VOLUME /data
@@ -15,8 +15,8 @@ RUN apt-get update \
     && mkdir /opt/transmission-ui/transmission-web-control \
     && curl -L https://github.com/ronggang/twc-release/raw/master/src.tar.gz \
      | tar -C /opt/transmission-ui/transmission-web-control/ -xzv \
-    && apt-get purge git unzip \
-    && apt-get autoremove --purge \
+    && apt-get purge -y git unzip \
+    && apt-get autoremove -y --purge\
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-armhf-v0.6.0.tar.gz \
      | tar -C /usr/local/bin -xzv \
