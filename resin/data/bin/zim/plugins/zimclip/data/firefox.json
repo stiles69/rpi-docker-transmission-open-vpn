@@ -1,0 +1,7 @@
+{
+    "name": "zimclip",
+    "description": "Zim Clip",
+    "path": "",
+    "type": "stdio",
+    "allowed_extensions": ["zim-clip@omacronides.com", "zimclip-webext@omacronides.com"]
+}

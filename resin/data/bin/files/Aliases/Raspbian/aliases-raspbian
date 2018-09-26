@@ -1,0 +1,9 @@
+# == Raspbian ==
+alias pia-start=sudo openvpn --config /etc/openvpn/USChicago.ovpn --daemon --auth-user-pass /etc/openvpn/login.txt
+
+alias sshd-stop="sudo systemctl stop ssh.service"
+alias sshd-start="sudo systemctl start ssh.service"
+alias sshd-status="sudo systemctl status ssh.service"
+alias sshd-restart="sudo systemctl restart ssh.service"
+alias sshd-disable="sudo systemctl disable ssh.service"
+alias sshd-enable="sudo systemctl enable ssh.service"
