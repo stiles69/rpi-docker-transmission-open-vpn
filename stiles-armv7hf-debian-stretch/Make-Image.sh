@@ -1,9 +1,9 @@
-#!/bin/bash 
+#!/bin/bash  
 #====================================================
 #
-#          FILE: Start-Transmission-Image.sh
+#          FILE: Make-Image.sh
 # 
-#         USAGE: ./Start-Transmission-Image.sh 
+#         USAGE: ./Make-Image.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -13,32 +13,20 @@
 #         NOTES: ---
 #        AUTHOR: Brett Salemink (BS), admin@roguedesigns.us
 #  ORGANIZATION: Rogue Designs
-#       CREATED: 09/05/2018 01:54
+#       CREATED: 09/26/2018 05:09
 #      REVISION:  ---
 #====================================================
 set -o nounset                              # Treat unset variables as an error
+
 #------------ SOURCED ----------------
 
 #-------------------------------------
-
 #---------- GLOBAL VARIABLES ---------
 
 #-------------------------------------
-StartProxy ()
-{
-	docker run -d stiles/rpi-docker-transmission-openvpn-proxy
-}	# end
-
-StartTransmission()
-{
-	
-	docker run -it --name rogue-rpi-docker -p 9091:9091 stiles/rpi-docker-transmission-openvpn:latest /bin/bash 
-}	# end
-
 function Main ()
 {
-	StartTransmission
-	#StartProxy
+	docker build -t stiles/armv7hf-debian:stretch .
 }	# end Main
 
 Main

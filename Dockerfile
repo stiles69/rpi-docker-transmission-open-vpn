@@ -1,4 +1,4 @@
-FROM stiles/rpi-raspbian:stretch
+FROM stiles/armv7hf-debian:stretch
 MAINTAINER Kristian Haugene
 
 VOLUME /data
