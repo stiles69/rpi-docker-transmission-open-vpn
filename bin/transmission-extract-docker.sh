@@ -24,8 +24,6 @@
 #---------- GLOBAL VARIABLES ---------
 	DIR1="/torrents"
 	DIR2="/data"
-	LOGDIR=$HOME/Transmission-Extract-Logs
-	LOGFILE=Log.txt
 	DIRCOMPLETEDTORRENTS="$DIR1/completed"
 	DIRCOMPLETEDDATA="$DIR2/completed"
 #-------------------------------------
@@ -33,26 +31,19 @@ UnRarDataDir()
 {
 	#Docker Folder
 	cd $DIR2
-	echo "Changed to $PWD"
-	echo "Starting $DIR2 extraction"
 	find . -name '*.rar' -execdir unrar e -o- {} \; 
-	echo "Finished $DIR2 extration"
 	wait	
 }	# end
 
 UnRarTorrentsDir()
 {
 	cd $DIR1
-	echo "Changed to $PWD"
-	echo "Starting $DIR1 extraction"
 	find . -name '*.rar' -execdir unrar e -o- {} \;
-	echo "Finished $DIR1 extraction"
 	wait
 }	# end
 
 MoveTorrentsDir()
 {
-	echo "Starting move on $DIR1"
 	find $DIR1 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
 	find $DIR1 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
 	find $DIR1 -name '*.avi' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
@@ -75,15 +66,21 @@ MoveDataDir()
 	find $DIR2 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
 	find $DIR2 -name '*.flv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
 	find $DIR2 -name '*.flac' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	echo "Finished move on $DIR2"
+}	# end
+
+function SendMessage ()
+{
+	ssh brettsalemink@10.0.0.11 "export Display=:0;notify-send "Transmission Extract Update" "Finished extracting and moving file.""
+	echo "Extraction Complete" > /data/Extraction-Status.txt
 }	# end
 
 function Main ()
 {
-	UnRarTorrentsDir
+#	UnRarTorrentsDir
 	UnRarDataDir
-	MoveTorrentsDir
+#	MoveTorrentsDir
 	MoveDataDir
+	SendMessage
 }	# end Main
 
 Main
