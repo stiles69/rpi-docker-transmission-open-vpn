@@ -72,6 +72,7 @@ function SendMessage ()
 {
 	ssh brettsalemink@10.0.0.11 "export Display=:0;notify-send "Transmission Extract Update" "Finished extracting and moving file.""
 	echo "Extraction Complete" > /data/Extraction-Status.txt
+	/config/Notify.sh
 }	# end
 
 function Main ()
