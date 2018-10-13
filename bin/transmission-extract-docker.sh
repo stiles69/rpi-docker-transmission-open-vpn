@@ -70,9 +70,8 @@ MoveDataDir()
 
 function SendMessage ()
 {
-	ssh brettsalemink@10.0.0.11 "export Display=:0;notify-send "Transmission Extract Update" "Finished extracting and moving file.""
-	echo "Extraction Complete" > /data/Extraction-Status.txt
-	/config/Notify.sh
+	ssh brettsalemink@10.0.0.11 export Display=:0;notify-send "Transmission Extract Update" "Finished extracting and moving file."
+	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t=Transmission" -d "c=Extraction Complete" -d "u=http://roguedesigns.us"
 }	# end
 
 function Main ()
