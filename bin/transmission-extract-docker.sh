@@ -1,9 +1,9 @@
 #!/bin/bash
 #====================================================
 #
-#          FILE:  transmission-extract.sh
+#          FILE:  transmission-extract-docker.sh
 # 
-#         USAGE:  ./transmission-extract.sh 
+#         USAGE:  ./transmission-extract-docker.sh 
 # 
 #   DESCRIPTION:  This will extract rar files when done downloading.
 # 
@@ -22,8 +22,8 @@
 #----------------------------
 
 #---------- GLOBAL VARIABLES ---------
-#DIR1="/torrents"
-DIR2="/data"
+DIR1="/data"
+#DIR2="/torrents"
 #DIRCOMPLETEDTORRENTS="$DIR1/completed"
 DIRCOMPLETEDDATA="$DIR2/completed"
 PARAM1="$1"
@@ -32,53 +32,50 @@ PARAM2="$2"
 UnRarDataDir()
 {
 	#Docker Folder
-	cd $DIR2
-	find . -name '*.rar' -execdir 7z e -o./completed -o- {} \; 
+	cd $DIR1
+	find . -name '*.rar' -exec unrar x {} \;
 	wait	
 }	# end
 
 UnRarTorrentsDir()
 {
-	#cd $DIR1
-	#find . -name '*.rar' -execdir unrar e ./completed -o- {} \;
-	#wait
-}	# end
-
-MoveTorrentsDir()
-{
-	find $DIR1 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.avi' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.flv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR1 -name '*.flac' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-
+	cd $DIR2
+	find . -name '*.rar' -exec unrar x {} \;
+	wait	
 }	# end
 
 MoveDataDir()
 {
-	find $DIR2 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.avi' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.flv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR2 -name '*.flac' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.avi' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.flv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+	find $DIR1 -name '*.flac' -exec mv -t "$DIRCOMPLETEDDATA" {} +
+}	# end
+
+MoveTorrentsDir()
+{
+	find $DIR2 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.avi' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.flv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+	find $DIR2 -name '*.flac' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
+
 }	# end
 
 function SendMessage ()
 {
 	local URGENCY="$1"
-#	local EXPIRETIME=6000
 	local ICONPATH="$2"
 	local TITLE="$3"
 	local MSG="$4"
 	
-#	echo "The title is $TITLE"
-#	echo "The message is $MSG"
 	ssh brettsalemink@173.29.176.138 -p 58134 "export Display=:0;notify-send '$TITLE' '$MSG' -t 15000 --icon='$ICONPATH'"
 	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$TITLE'" -d "c='$MSG'" -d "u=http://roguedesigns.us"
 }	# end

@@ -1,5 +1,4 @@
-FROM stiles/rpi-raspbian:stretch
-MAINTAINER admin@roguedesigns.us
+FROM resin/rpi-raspbian:stretch
 
 VOLUME /data
 VOLUME /config
