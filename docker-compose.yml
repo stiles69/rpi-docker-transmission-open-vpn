@@ -20,8 +20,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /torrents:/data
+      - /torrents/scripts:/scripts
     env_file:
-      - "rogue.env"
+      - "common.env"
+    network_mode: 'host'
     
   proxy:
     build:
@@ -34,6 +36,8 @@ services:
       - '8080:8080'
     volumes:
       - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - transmission
 
   rss:
     build:
@@ -45,4 +49,7 @@ services:
     ports:
       - 8080:8080
     env_file:
-      - "rogue.env"
+      - "common.env"
+    depends_on:
+      - transmission
+      - proxy
