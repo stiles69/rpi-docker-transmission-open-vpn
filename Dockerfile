@@ -3,11 +3,12 @@ MAINTAINER admin@roguedesigns.us
 
 VOLUME /data
 VOLUME /config
+VOLUME /scripts
 
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install transmission-cli transmission-common transmission-daemon \
-    && apt-get install -y dumb-init unzip openvpn curl ufw git tinyproxy jq \
+    && apt-get install -y dumb-init unzip openvpn curl ufw git tinyproxy jq p7zip-full \
     && curl -L -o /tmp/release.zip https://github.com/Secretmapper/combustion/archive/release.zip \
     && unzip /tmp/release.zip -d /opt/transmission-ui/ \
     && rm /tmp/release.zip \
@@ -28,7 +29,7 @@ RUN apt-get update \
 ADD openvpn/ /etc/openvpn/
 ADD transmission/ /etc/transmission/
 ADD tinyproxy /opt/tinyproxy/
-ADD bin/ /config/bin/
+ADD bin/ /scripts/
 
 ENV OPENVPN_USERNAME=**None** \
     OPENVPN_PASSWORD=**None** \
@@ -45,17 +46,17 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_BIND_ADDRESS_IPV6=:: \
     TRANSMISSION_BLOCKLIST_ENABLED=false \
     TRANSMISSION_BLOCKLIST_URL=http://www.example.com/blocklist \
-    TRANSMISSION_CACHE_SIZE_MB=16 \
+    TRANSMISSION_CACHE_SIZE_MB=4 \
     TRANSMISSION_DHT_ENABLED=false \
-    TRANSMISSION_DOWNLOAD_DIR=/data/ \
-    TRANSMISSION_DOWNLOAD_LIMIT=2500 \
+    TRANSMISSION_DOWNLOAD_DIR=/data \
+    TRANSMISSION_DOWNLOAD_LIMIT=3000 \
     TRANSMISSION_DOWNLOAD_LIMIT_ENABLED=true \
     TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=true \
     TRANSMISSION_DOWNLOAD_QUEUE_SIZE=2 \
     TRANSMISSION_ENCRYPTION=1 \
     TRANSMISSION_IDLE_SEEDING_LIMIT=30 \
     TRANSMISSION_IDLE_SEEDING_LIMIT_ENABLED=false \
-    TRANSMISSION_INCOMPLETE_DIR=/data/ \
+    TRANSMISSION_INCOMPLETE_DIR=/data/incomplete \
     TRANSMISSION_INCOMPLETE_DIR_ENABLED=true \
     TRANSMISSION_LPD_ENABLED=false \
     TRANSMISSION_MAX_PEERS_GLOBAL=200 \
@@ -91,10 +92,10 @@ ENV OPENVPN_USERNAME=**None** \
     TRANSMISSION_RPC_WHITELIST_ENABLED=false \
     TRANSMISSION_SCRAPE_PAUSED_TORRENTS_ENABLED=false \
     TRANSMISSION_SCRIPT_TORRENT_DONE_ENABLED=true \
-    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=/config/bin/transmission-extract-docker.sh \
+    TRANSMISSION_SCRIPT_TORRENT_DONE_FILENAME=/scripts/transmission-extract-docker.sh \
     TRANSMISSION_SEED_QUEUE_ENABLED=false \
     TRANSMISSION_SEED_QUEUE_SIZE=10 \
-    TRANSMISSION_SPEED_LIMIT_DOWN=2500 \
+    TRANSMISSION_SPEED_LIMIT_DOWN=3000 \
     TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED=true \
     TRANSMISSION_SPEED_LIMIT_UP=500 \
     TRANSMISSION_SPEED_LIMIT_UP_ENABLED=true \

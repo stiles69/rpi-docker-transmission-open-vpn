@@ -26,7 +26,7 @@ set -o nounset                              # Treat unset variables as an error
 #-------------------------------------
 function Main ()
 {
-	docker build -t stiles/rpi-raspbian:stretch .
+	docker build -t stiles/rpi-raspbian .
 }	# end Main
 
 Main
