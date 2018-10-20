@@ -39,17 +39,17 @@ services:
     depends_on:
       - transmission
 
-  rss:
-    build:
-      context: ./rss
-      dockerfile: Dockerfile
-    image: stiles/rpi-docker-transmission-rss-compose
-    links:
-      - proxy
-    ports:
-      - 8080:8080
-    env_file:
-      - "common.env"
-    depends_on:
-      - transmission
-      - proxy
+        #  rss:
+        #    build:
+        #      context: ./rss
+        #      dockerfile: Dockerfile
+        #    image: stiles/rpi-docker-transmission-rss-compose
+        #    links:
+        #      - proxy
+        #    ports:
+        #      - 9999:9999
+        #    env_file:
+        #      - "common.env"
+        #    depends_on:
+        #      - transmission
+        #      - proxy
