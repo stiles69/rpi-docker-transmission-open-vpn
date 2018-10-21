@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: stiles/rpi-docker-transmission-openvpn-compose
+    container_name: transmission_container_compose
     cap_add:
       - NET_ADMIN
     devices:
@@ -30,6 +31,7 @@ services:
       context: ./proxy
       dockerfile: Dockerfile
     image: stiles/rpi-docker-transmission-openvpn-proxy-compose
+    container_name: proxy_container_compose
     links:
       - transmission
     ports:
