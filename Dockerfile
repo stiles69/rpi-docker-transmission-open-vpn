@@ -7,7 +7,7 @@ VOLUME /scripts
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install transmission-cli transmission-common transmission-daemon \
-    && apt-get install -y dumb-init unzip openvpn curl ufw git tinyproxy jq p7zip-full \
+    && apt-get install -y dumb-init unzip openvpn curl ufw git tinyproxy jq unrar \
     && curl -L -o /tmp/release.zip https://github.com/Secretmapper/combustion/archive/release.zip \
     && unzip /tmp/release.zip -d /opt/transmission-ui/ \
     && rm /tmp/release.zip \
