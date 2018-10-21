@@ -22,30 +22,29 @@
 #----------------------------
 
 #---------- GLOBAL VARIABLES ---------
-DIR1="/data"
-DIRCOMPLETEDDATA="$DIR1/completed"
+DIR=/data
+DIRCOMPLETED=$DIR/completed
 PARAM1="$1"
 PARAM2="$2"
 #-------------------------------------
-UnRarDataDir()
+UnrarDir()
 {
 	#Docker Folder
-	cd $DIR1
-	find . -name '*.rar' -execdir 7z e -o- {} \;
+	cd $DIR
+	find . -name '*.rar' -execdir "7z e" -o- {} \;
 	wait	
 }	# end
 
-MoveDataDir()
+MoveDir()
 {
-	find $DIR1 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.avi' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.flv' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-	find $DIR1 -name '*.flac' -exec mv -t "$DIRCOMPLETEDDATA" {} +
-}	# end
+	find $DIR -name '*.mp4' -exec mv -t "$DIRCOMPLETED" {} +
+	find $DIR -name '*.mkv' -exec mv -t "$DIRCOMPLETED" {} +
+	find $DIR -name '*.avi' -exec mv -t "$DIRCOMPLETED" {} +
+	find $DIR -name '*.mpg' -exec mv -t "$DIRCOMPLETED" {} +
+	find $DIR -name '*.wmv' -exec mv -t "$DIRCOMPLETED" {} +
+	find $DIR -name '*.mpeg' -exec mv -t "$DIRCOMPLETED" {} +
+	find $DIR -name '*.flv' -exec mv -t "$DIRCOMPLETED" {} +
+}	
 
 function SendMessage ()
 {
@@ -60,9 +59,9 @@ function SendMessage ()
 
 function Main ()
 {
-	UnRarDataDir
+	UnrarDir
 	wait
-	MoveDataDir
+	MoveDir
 	wait
 
 	#Check $1
