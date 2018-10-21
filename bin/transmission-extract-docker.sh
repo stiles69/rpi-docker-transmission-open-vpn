@@ -23,9 +23,7 @@
 
 #---------- GLOBAL VARIABLES ---------
 DIR1="/data"
-#DIR2="/torrents"
-#DIRCOMPLETEDTORRENTS="$DIR1/completed"
-DIRCOMPLETEDDATA="$DIR2/completed"
+DIRCOMPLETEDDATA="$DIR1/completed"
 PARAM1="$1"
 PARAM2="$2"
 #-------------------------------------
@@ -33,14 +31,7 @@ UnRarDataDir()
 {
 	#Docker Folder
 	cd $DIR1
-	find . -name '*.rar' -exec unrar x {} \;
-	wait	
-}	# end
-
-UnRarTorrentsDir()
-{
-	cd $DIR2
-	find . -name '*.rar' -exec unrar x {} \;
+	find . -name '*.rar' -execdir unrar e -o- {} \;
 	wait	
 }	# end
 
@@ -56,19 +47,6 @@ MoveDataDir()
 	find $DIR1 -name '*.flac' -exec mv -t "$DIRCOMPLETEDDATA" {} +
 }	# end
 
-MoveTorrentsDir()
-{
-	find $DIR2 -name '*.mp4' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.mkv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.avi' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.mpg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.wmv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.mpeg' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.flv' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-	find $DIR2 -name '*.flac' -exec mv -t "$DIRCOMPLETEDTORRENTS" {} +
-
-}	# end
-
 function SendMessage ()
 {
 	local URGENCY="$1"
@@ -82,12 +60,10 @@ function SendMessage ()
 
 function Main ()
 {
-#	UnRarTorrentsDir
 	UnRarDataDir
 	wait
-#	MoveTorrentsDir
-#	MoveDataDir
-#	wait
+	MoveDataDir
+	wait
 
 	#Check $1
 	if [ -z "$PARAM1" ]

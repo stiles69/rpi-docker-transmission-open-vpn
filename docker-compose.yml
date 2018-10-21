@@ -20,7 +20,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /torrents:/data
-      - /torrents/scripts:/scripts
+      - ./bin:/scripts
     env_file:
       - "common.env"
     network_mode: 'host'
