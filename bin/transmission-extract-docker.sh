@@ -31,7 +31,7 @@ UnrarDir()
 {
 	#Docker Folder
 	cd $DIR
-	find . -name '*.rar' -execdir "7z e" -o- {} \;
+	find . -name '*.rar' -execdir 7z e -o- {} \;
 	wait	
 }	# end
 
