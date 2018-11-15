@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: stiles/rpi-docker-transmission-openvpn-compose
+    image: stiles/rpi-docker-transmission-openvpn:latest
     container_name: transmission_container_compose
     cap_add:
       - NET_ADMIN
@@ -15,6 +15,7 @@ services:
     ports:
       - '9091:9091'
       - '8888:8888'
+      - '60001:60001'
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -23,23 +24,23 @@ services:
       - /torrents:/data
       - ./bin:/scripts
     env_file:
-      - "common.env"
+      - 'common.env'
     network_mode: 'host'
     
-  proxy:
-    build:
-      context: ./proxy
-      dockerfile: Dockerfile
-    image: stiles/rpi-docker-transmission-openvpn-proxy-compose
-    container_name: proxy_container_compose
-    links:
-      - transmission
-    ports:
-      - '8080:8080'
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-    depends_on:
-      - transmission
+    #  proxy:
+    #image: stiles/rpi-docker-transmission-openvpn-proxy
+    #    container_name: proxy_container_compose
+    #    links:
+    # - transmission
+    #    ports:
+    #      - '8080:8080'
+    #    volumes:
+    #      - /etc/localtime:/etc/localtime:ro
+    #    env_file:
+    #      - "common.env"
+    #    network_mode: 'host'
+    #    depends_on:
+    #      - transmission
 
         #  rss:
         #    build:

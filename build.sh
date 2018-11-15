@@ -1,9 +1,9 @@
-#!/bin/bash  
+#!/bin/bash 
 #====================================================
 #
-#          FILE: Make-Image.sh
+#          FILE: build.sh
 # 
-#         USAGE: ./Make-Image.sh 
+#         USAGE: ./build.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -13,7 +13,7 @@
 #         NOTES: ---
 #        AUTHOR: Brett Salemink (BS), admin@roguedesigns.us
 #  ORGANIZATION: Rogue Designs
-#       CREATED: 09/26/2018 02:15
+#       CREATED: 11/09/2018 02:09
 #      REVISION:  ---
 #====================================================
 set -o nounset                              # Treat unset variables as an error
@@ -22,11 +22,15 @@ set -o nounset                              # Treat unset variables as an error
 
 #-------------------------------------
 #---------- GLOBAL VARIABLES ---------
-
+DIR1=$HOME/development/Docker/build-rpi-docker-transmission-openvpn
 #-------------------------------------
 function Main ()
 {
-	docker build -t stiles/rpi-raspbian .
+#	echo "Please enter MANJAROPASSWORD:"
+#	read MANJAROPASSWORD
+	docker build -t stiles/rpi-docker-transmission-openvpn:latest "$DIR1"
+
+	docker push stiles/rpi-docker-transmission-openvpn:latest
 }	# end Main
 
 Main

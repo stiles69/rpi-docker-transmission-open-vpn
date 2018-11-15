@@ -22,6 +22,8 @@
 #----------------------------
 
 #---------- GLOBAL VARIABLES ---------
+HOST=173.29.176.138
+PORT=60001
 DIR=/data
 DIRCOMPLETED=$DIR/completed
 PARAM1="$1"
@@ -53,7 +55,8 @@ function SendMessage ()
 	local TITLE="$3"
 	local MSG="$4"
 	
-	ssh brettsalemink@173.29.176.138 -p 58134 "export Display=:0;notify-send '$TITLE' '$MSG' -t 15000 --icon='$ICONPATH'"
+#	sshpass -p "$MANJAROPASSWORD" ssh -p 60001 brettsalemink@173.29.176.138 'cat >> .ssh/authorized_keys' < /config/.ssh/id_rsa.pub
+	sshpass -p "Samsung#2013" ssh -p $PORT brettsalemink@$HOST "export Display=:0;notify-send '$TITLE' '$MSG' -t 15000 --icon='$ICONPATH'"
 	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$TITLE'" -d "c='$MSG'" -d "u=http://roguedesigns.us"
 }	# end
 

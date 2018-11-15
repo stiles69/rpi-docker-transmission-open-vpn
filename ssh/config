@@ -1,0 +1,26 @@
+Host cp.slave1
+     Hostname 10.0.0.5
+     User brettsalemink
+     IdentityFile ~/.ssh/id_rsa
+
+Host cp.slave2
+     Hostname 10.0.0.6
+     port 22575
+     User brettsalemink
+     IdentityFile ~/.ssh/id_rsa
+
+Host cp.slave3
+     Hostname 10.0.0.12
+     User brettsalemink
+     IdentityFile ~/.ssh/id_rsa
+
+Host cp.master
+     Hostname 10.0.0.18
+     User brettsalemink
+     IdentityFile ~/.ssh/id_rsa
+
+Host cp.manjaro
+     Hostname 10.0.0.11
+     User brettsalemink
+     IdentityFile ~/.ssh/id_rsa
+
