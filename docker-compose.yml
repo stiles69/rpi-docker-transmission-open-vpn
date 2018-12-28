@@ -27,20 +27,20 @@ services:
       - 'common.env'
     network_mode: 'host'
     
-    #  proxy:
-    #image: stiles/rpi-docker-transmission-openvpn-proxy
-    #    container_name: proxy_container_compose
+  proxy:
+    image: stiles/rpi-docker-transmission-openvpn-proxy
+    container_name: proxy_container_compose
     #    links:
     # - transmission
-    #    ports:
-    #      - '8080:8080'
-    #    volumes:
-    #      - /etc/localtime:/etc/localtime:ro
-    #    env_file:
-    #      - "common.env"
-    #    network_mode: 'host'
-    #    depends_on:
-    #      - transmission
+    ports:
+      - '8080:8080'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - "common.env"
+    network_mode: 'host'
+    depends_on:
+      - transmission
 
         #  rss:
         #    build:

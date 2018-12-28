@@ -18,7 +18,7 @@
 #      REVISION:  ---
 #====================================================
 #---------- SOURCED ---------
-
+source /scripts/send-message.sh
 #----------------------------
 
 #---------- GLOBAL VARIABLES ---------
@@ -50,13 +50,9 @@ MoveDir()
 
 function SendMessage ()
 {
-	local URGENCY="$1"
-	local ICONPATH="$2"
-	local TITLE="$3"
-	local MSG="$4"
+#	sshpass -p "Samsung#2013" ssh -p $PORT brettsalemink@$HOST "export Display=:0;notify-send '$TITLE' '$MSG' -t 15000 --icon='$ICONPATH'"
+	send-message.sh
 	
-#	sshpass -p "$MANJAROPASSWORD" ssh -p 60001 brettsalemink@173.29.176.138 'cat >> .ssh/authorized_keys' < /config/.ssh/id_rsa.pub
-	sshpass -p "Samsung#2013" ssh -p $PORT brettsalemink@$HOST "export Display=:0;notify-send '$TITLE' '$MSG' -t 15000 --icon='$ICONPATH'"
 	curl https://xdroid.net/api/message -X POST -d "k=u-440890b42fee" -d "t='$TITLE'" -d "c='$MSG'" -d "u=http://roguedesigns.us"
 }	# end
 
@@ -83,19 +79,17 @@ function Main ()
 		MSG="$PARAM2"
 	fi
 
-#	echo "Param1 is $PARAM1"
-#	echo "Param2 is $PARAM2"
 
 	URGENCY='normal'		# Array OPTIONAL (low normal critical)
-#	EXPIRETIME=6000			# Time in Milliseconds OPTIONAL
-	ICONPATH='dialog-information'	# Path to ICON OPTIONAL or Name of Icon ex. --icon=dialog-information
+	ICON=/usr/share/icons/roguedesigns/slave-icon-256x256.png
 #	TITLE				# Title or Summary MANDATORY
 #	MSG				# Actual Message OPTIONAL
 	
 	SendMessage $URGENCY $ICONPATH $TITLE $MSG 
+
 }	# end Main
 
 Main
-
+send-message.sh
 #===EXIT===
 exit 0
