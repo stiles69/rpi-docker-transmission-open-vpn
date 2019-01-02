@@ -15,7 +15,6 @@ services:
     ports:
       - '9091:9091'
       - '8888:8888'
-      - '60001:60001'
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -30,8 +29,8 @@ services:
   proxy:
     image: stiles/rpi-docker-transmission-openvpn-proxy
     container_name: proxy_container_compose
-    #    links:
-    # - transmission
+    links:
+      - transmission
     ports:
       - '8080:8080'
     volumes:
@@ -41,18 +40,3 @@ services:
     network_mode: 'host'
     depends_on:
       - transmission
-
-        #  rss:
-        #    build:
-        #      context: ./rss
-        #      dockerfile: Dockerfile
-        #    image: stiles/rpi-docker-transmission-rss-compose
-        #    links:
-        #      - proxy
-        #    ports:
-        #      - 9999:9999
-        #    env_file:
-        #      - "common.env"
-        #    depends_on:
-        #      - transmission
-        #      - proxy
